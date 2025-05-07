@@ -1,8 +1,3 @@
-#install.packages("mgcv")
-#install.packages("brms")
-#install.packages("tidyverse")
-#install.packages("surveybootstrap")
-#install.packages("survey")
 library(surveybootstrap)
 library(mgcv)
 library(tidyr)
@@ -15,20 +10,17 @@ library(tibble)
 library(survey)
 
 #set working directory
-setwd("/Users/mikim/Library/CloudStorage/GoogleDrive-mikim@policingequity.org/My Drive/Research/NEISS")
+setwd()
 
 ###############################################################################
 ######################## PREP DATA AND IMPUTE RACE ############################
 ###############################################################################
 
-
 #import neiss and population data
 
-neiss <- read_csv("neiss_allyears_small.csv")
-neiss_legal <- neiss %>% 
-  filter(INTENT==3) %>% # Keep only legal intervention injuries 
+neiss_legal <- read_csv("neiss_legal_race_imputed.csv")
+neiss_legal <- neiss_legal %>% 
   mutate(
-    raceeth = raceeth - 1, # Keep race as numeric, set lowest level (white) to 0
     hid = as.factor(hid),
     male = as.factor(male),
     STRATUM = as.factor(STRATUM)
@@ -48,9 +40,6 @@ population <- population %>%
     names_to = "race",  
     values_to = "pop"  
   ) 
-
-# Unload full NEISS dataset to save memory
-rm(neiss)
 
 ######### Predict race with multilevel, multinomial logistic model ############
 # (No need to specify complete case, as mgcv will drop rows w/ any missingness)
