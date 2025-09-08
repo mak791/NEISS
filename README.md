@@ -23,4 +23,4 @@ The central script in this repository, `bootstrap_parametric.R`, performs the fu
 This repository does not include the full incident-level NEISS dataset. The original data can be downloaded from the ICPSR repository (https://www.icpsr.umich.edu/web/ICPSR/series/198). We additionally created unique hospital identifiers based on the table of date changes to each Primary Samplint Unit in NEISS, available from the Consumer Product Safety Commission upon request. 
 
 ## Citation 
-If you use this code or data, please cite: 
+If you use this code or data, please cite: https://www.medrxiv.org/content/10.1101/2025.05.09.25327323v1 
